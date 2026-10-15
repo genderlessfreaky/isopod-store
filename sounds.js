@@ -49,7 +49,7 @@
       const now = ctx.currentTime;
       [587.33, 739.99, 880].forEach((frequency, index) => tone({
         frequency, start: now + index * 0.052, duration: 0.19 - index * 0.025,
-        volume: 0.12 - index * 0.016, type: 'triangle'
+        volume: 0.045 - index * 0.008, type: 'triangle'
       }));
     },
     remove() {
