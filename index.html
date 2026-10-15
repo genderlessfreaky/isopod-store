@@ -38,7 +38,54 @@
   <footer><a class="footer-brand" href="#">Isopod Store</a><p>Peças estranhas. Escolhidas com cuidado.</p><div><span>© <span id="year">2026</span> ISOPOD STORE</span><span>VITRINE DEMONSTRATIVA</span><a href="#">DE VOLTA AO TOPO ↑︎</a></div></footer>
   <button id="cartOpen" class="floating-bag" aria-label="Abrir sacola" aria-haspopup="dialog" aria-controls="cartDialog" title="Sua sacola"><svg viewBox="0 0 28 30" fill="none" aria-hidden="true"><path d="M5 10h18l2 17H3L5 10Z"/><path d="M9 11V7a5 5 0 0 1 10 0v4"/></svg><span id="cartCount" class="floating-bag-count">0</span></button>
   <dialog id="productDialog" aria-labelledby="detailName"><button class="dialog-close icon-button" data-close="productDialog" aria-label="Fechar detalhes">×</button><div class="product-detail"><div class="detail-image" id="detailArt"></div><div class="detail-copy"><div class="eyebrow" id="detailMeta"></div><h2 id="detailName"></h2><p id="detailDesc"></p><div id="detailPrice" class="detail-price"></div><div class="detail-rule">REPRESENTAÇÃO ARTÍSTICA · ACERVO DEMONSTRATIVO</div><div class="detail-tabs" role="tablist" aria-label="Informações da peça"><button role="tab" aria-selected="true" data-tab="materials">Materiais</button><button role="tab" aria-selected="false" data-tab="technique">Técnica</button><button role="tab" aria-selected="false" data-tab="care">Cuidados</button></div><p id="tabPanel" role="tabpanel"></p><p id="detailDimensions" class="dimensions"></p><div class="purchase-control"><button id="addToCart" class="button dark">Adicionar à sacola <span>+</span></button><div id="detailQuantity" class="detail-quantity" role="group" aria-label="Quantidade desta peça na sacola" hidden><button type="button" id="detailMinus" data-detail-minus aria-label="Remover uma unidade">−</button><div class="detail-quantity-value"><strong id="detailQuantityValue">1</strong><span id="purchaseStatus" class="purchase-status sr-only" role="status" aria-live="polite" aria-atomic="true">na sua sacola</span></div><button type="button" id="detailPlus" data-detail-plus aria-label="Adicionar uma unidade">+</button></div></div></div></div></dialog>
-  <dialog id="cartDialog" class="cart-dialog" aria-labelledby="cartTitle"><div class="cart-header"><div><span class="eyebrow">SEUS PEQUENOS ACHADOS</span><h2 id="cartTitle">Sua <em>sacola.</em></h2></div><button class="icon-button" data-close="cartDialog" aria-label="Fechar sacola">×</button></div><div id="cartItems"></div><div id="cartSummary"><div class="cart-total"><span>Subtotal</span><strong id="cartTotal"></strong></div><p class="cart-note">Vitrine demonstrativa. Nenhuma cobrança será realizada.</p><button class="button dark" id="checkoutBtn">Simular pedido <span>↗︎</span></button></div><div id="orderSuccess" hidden><span class="success-star">✦</span><h3>Uma bela coleção de estranhezas.</h3><p>Seu pedido foi simulado com sucesso. Nenhum pagamento foi cobrado e nenhum pedido real foi enviado.</p><button class="button dark" data-close="cartDialog">Continuar explorando ↗︎</button></div></dialog>
+  <dialog id="cartDialog" class="cart-dialog" aria-labelledby="cartTitle">
+    <div class="cart-header"><div><span class="eyebrow">SEUS PEQUENOS ACHADOS</span><h2 id="cartTitle">Sua <em>sacola.</em></h2></div><button class="icon-button" data-close="cartDialog" aria-label="Fechar sacola">×</button></div>
+    <div id="cartItems"></div>
+    <div id="cartSummary"><div class="cart-total"><span>Subtotal</span><strong id="cartTotal"></strong></div><p class="cart-note">Vitrine demonstrativa. Nenhuma cobrança será realizada.</p><button class="button dark" id="checkoutBtn">Continuar para endereço <span>↗︎</span></button></div>
+    <div id="checkoutFlow" class="checkout-flow" hidden>
+      <div class="checkout-progress"><div class="checkout-progress-label"><span id="checkoutStageLabel">ETAPA 1 DE 3</span><span>FINALIZAÇÃO DEMONSTRATIVA</span></div><div class="checkout-progress-track"><span id="checkoutProgressFill"></span></div></div>
+      <section id="addressStep" class="checkout-step">
+        <span class="checkout-eyebrow">ENTREGA</span><h3>Para onde vai sua curiosidade?</h3><p class="checkout-intro">Preencha um endereço fictício para ver as próximas etapas.</p>
+        <form id="addressForm" class="checkout-form">
+          <label class="checkout-field checkout-full">Nome completo<input name="fullName" autocomplete="name" required placeholder="Seu nome"></label>
+          <label class="checkout-field">CEP<input name="postalCode" autocomplete="postal-code" inputmode="numeric" required pattern="[0-9]{5}-?[0-9]{3}" placeholder="00000-000"></label>
+          <label class="checkout-field">Número<input name="number" autocomplete="address-line2" required placeholder="Nº"></label>
+          <label class="checkout-field checkout-full">Rua<input name="street" autocomplete="address-line1" required placeholder="Rua ou avenida"></label>
+          <label class="checkout-field">Bairro<input name="district" required placeholder="Bairro"></label>
+          <label class="checkout-field">Cidade<input name="city" autocomplete="address-level2" required placeholder="Cidade"></label>
+          <label class="checkout-field checkout-full">Estado<select name="state" autocomplete="address-level1" required><option value="">Selecione</option><option>AC</option><option>AL</option><option>AP</option><option>AM</option><option>BA</option><option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option><option>MT</option><option>MS</option><option>MG</option><option>PA</option><option>PB</option><option>PR</option><option>PE</option><option>PI</option><option>RJ</option><option>RN</option><option>RS</option><option>RO</option><option>RR</option><option>SC</option><option>SP</option><option>SE</option><option>TO</option></select></label>
+          <p class="checkout-privacy checkout-full">Demonstração local: o endereço não será enviado nem salvo.</p>
+          <button class="button dark checkout-full" type="submit">Continuar para pagamento <span>↗︎</span></button>
+        </form>
+      </section>
+      <section id="paymentStep" class="checkout-step" hidden>
+        <span class="checkout-eyebrow">PAGAMENTO</span><h3>Como prefere pagar?</h3><p class="checkout-intro">Escolha uma forma para concluir a simulação.</p>
+        <div class="payment-options" role="radiogroup" aria-label="Forma de pagamento">
+          <label class="payment-option"><input type="radio" name="paymentMethod" value="card" checked><span><strong>Cartão de crédito</strong><small>Cartão fictício · sem cobrança</small></span><span class="payment-option-mark"></span></label>
+          <label class="payment-option"><input type="radio" name="paymentMethod" value="pix"><span><strong>Pix</strong><small>Prévia de pagamento instantâneo</small></span><span class="payment-option-mark"></span></label>
+        </div>
+        <div id="cardDemo" class="payment-detail"><span class="checkout-eyebrow">CARTÃO DE TESTE</span><strong>VISA <span>•••• 4242</span></strong><p>Cartão fictício usado apenas para mostrar esta etapa. Não pedimos nem processamos dados de cartão.</p><label class="checkout-field">Parcelamento<select id="installments"><option value="1">1x sem juros</option><option value="2">2x sem juros</option><option value="3">3x sem juros</option><option value="6">6x sem juros</option></select></label></div>
+        <div id="pixDemo" class="payment-detail" hidden><span class="checkout-eyebrow">PIX</span><strong>Pagamento instantâneo</strong><p>A próxima tela mostra como seria a confirmação. Nenhum QR Code, chave Pix ou cobrança real será gerado.</p></div>
+        <div class="checkout-actions"><button class="text-button checkout-back" id="backToAddress" type="button">← Endereço</button><button class="button dark" id="paymentContinue" type="button">Revisar pedido <span>↗︎</span></button></div>
+      </section>
+      <section id="reviewStep" class="checkout-step" hidden>
+        <span class="checkout-eyebrow">REVISÃO</span><h3>Confira sua simulação</h3>
+        <div class="review-card"><span>ENTREGA</span><p id="reviewAddress"></p><button class="text-button" type="button" id="editAddress">Editar</button></div>
+        <div class="review-card"><span>PAGAMENTO</span><p id="reviewPayment"></p><button class="text-button" type="button" id="editPayment">Editar</button></div>
+        <div class="review-total"><span>Total demonstrativo</span><strong id="reviewTotal"></strong></div>
+        <p class="checkout-privacy">Nenhum pedido real será enviado ou cobrado.</p>
+        <div class="checkout-actions"><button class="text-button checkout-back" type="button" id="backToPayment">← Pagamento</button><button class="button dark" type="button" id="confirmDemoOrder">Confirmar simulação <span>↗︎</span></button></div>
+      </section>
+      <section id="pixStep" class="checkout-step" hidden>
+        <span class="checkout-eyebrow">PIX DEMONSTRATIVO</span><h3>Pagamento pronto para simular</h3>
+        <div class="pix-placeholder"><span>PIX</span><small>PRÉVIA · NÃO ESCANEÁVEL</small></div>
+        <p class="checkout-intro">Em uma loja real, o QR Code apareceria aqui. Esta prévia não contém código de pagamento e não movimenta dinheiro.</p>
+        <div class="review-total"><span>Valor demonstrativo</span><strong id="pixTotal"></strong></div>
+        <div class="checkout-actions"><button class="text-button checkout-back" type="button" id="backToReview">← Revisão</button><button class="button dark" type="button" id="confirmPix">Concluir simulação <span>↗︎</span></button></div>
+      </section>
+    </div>
+    <div id="orderSuccess" hidden><span class="success-star">✦</span><h3 id="orderSuccessTitle">Uma bela coleção de estranhezas.</h3><p id="orderSuccessMessage">Seu pedido foi simulado com sucesso. Nenhum pagamento foi cobrado e nenhum pedido real foi enviado.</p><p id="orderSuccessAddress" class="checkout-success-address"></p><button class="button dark" data-close="cartDialog">Continuar explorando ↗︎</button></div>
+  </dialog>
   <div class="toast" role="status" id="toast"></div>
 </body></html>
 
