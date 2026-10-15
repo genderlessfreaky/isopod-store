@@ -274,3 +274,7 @@ footer{padding-bottom:115px}
 .pix-placeholder small{color:#a99885;font-size:10px;letter-spacing:1.5px}
 .checkout-success-address{padding:12px;border:1px solid var(--line);border-radius:12px}
 @media(max-width:390px){.checkout-form{gap:12px}.checkout-field{font-size:13px}.checkout-step h3{font-size:31px}.checkout-actions{gap:7px}.checkout-actions .button{padding:12px 10px;font-size:14px}.review-total strong{font-size:23px}}
+
+#cartSummary{position:sticky;bottom:0;z-index:3;margin:0 -30px -30px;padding:15px 30px max(18px,env(safe-area-inset-bottom));background:linear-gradient(180deg,#211d1ae8 0%,var(--surface) 22px);border-top:1px solid var(--line)}
+#checkoutBtn{min-height:54px;touch-action:manipulation;-webkit-appearance:none;appearance:none}
+@media(max-width:600px){#cartSummary{margin:0 -25px -25px;padding:15px 25px max(18px,env(safe-area-inset-bottom))}}
